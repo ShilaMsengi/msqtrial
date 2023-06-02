@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   });
   
   function getSensorValues() {
-    fetch('http://shilamsq.com/sensor-data') // Replace with your actual URL
+    fetch('https://msqtrial-5pjfhzlk0-shilamsengi.vercel.app/') // Replace with your actual URL
       .then(response => response.json())
       .then(data => {
         document.getElementById('value1').textContent = data.value1;
