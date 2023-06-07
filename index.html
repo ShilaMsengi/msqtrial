@@ -1,15 +1,31 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Receiving data from ESP8266</title>
-    <!-- Link to Grandeur -->
-    <script src="https://unpkg.com/grandeur-js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <title>Sensor Data</title>
   </head>
   <body>
-    <h1>Receiving data from ESP8266 &nbsp</h1>
-    <h1 class="loader">/</h1>
-    <p id="data">–</p>
+    <h1>Sensor Data</h1>
+    <p id="sensor1">Sensor 1 Value:</p>
+    <p id="sensor2">Sensor 2 Value:</p>
 
-    <script src="java.js"></script>
+    <script>
+      function updateSensorData(data) {
+        document.getElementById("sensor1").textContent =
+          "Sensor 1 Value: " + data.sensor1;
+        document.getElementById("sensor2").textContent =
+          "Sensor 2 Value: " + data.sensor2;
+      }
+
+      function fetchData() {
+        fetch("http://your-website.com/endpoint") // Replace with your remote website endpoint
+          .then((response) => response.json())
+          .then((data) => updateSensorData(data))
+          .catch((error) => console.log(error));
+
+        setTimeout(fetchData, 5000); // Repeat the fetch every 5 seconds (adjust as needed)
+      }
+
+      fetchData();
+    </script>
   </body>
 </html>
